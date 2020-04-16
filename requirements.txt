@@ -1,2 +1,8 @@
 gunicorn
 flask
+flashtext
+pickle
+pandas 
+numpy
+nltk
+
