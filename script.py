@@ -1,9 +1,11 @@
-from flask import Flask
-from serve import useless_function  
+from flashtext.keyword import KeywordProcessor
+import pickle
 
-app=Flask(__name__)
+def get_keywords_api():
+    keyword_processor = pickle.load(open('processor.pkl', 'rb'))
 
-# Define our "ping" end point
-@app.route('/ping')
-def useless_output():
-  return(useless_function())
+    def keywords_api(keywordProcessor, text, span_info=True):
+        keywords_found = keywordProcessor.extract_keywords(text, span_info=True)
+        return keywords_found
+
+    return keywords_api
